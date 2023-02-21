@@ -5,17 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
-    <style>
-        body{
-            background-color: grey;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div id="library">
 
+        </div>
+    </div>
+
+    <button id="addBook">Add New Book</button>
+    <div class="modal-container" id="modalContainer">
+        <div class="modal">
+            <h1>Add book</h1>
+            <form action="" id="myForm">
+                <div class="form-item">
+                    <label for="title">* Book title:</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div class="form-item">
+                    <label for="author">* Author name:</label>
+                    <input type="text" name="author" id="author" required>
+                </div>
+                <div class="form-item">
+                    <label for="pages">* Pages:</label>
+                    <input type="number" name="pages" id="pages" required>
+                </div>
+                <div class="form-item">
+                    <label for="read-status">* Read status:</label>
+                    <select name="read-status" id="read-status">
+                        <option value="read">I've read this</option>
+                        <option value="not-read">I haven't read this</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <button type="submit" value="Submit">Add Book</button>
+                </div>
+            </form>
+            <button id="closeModal">Close</button>
         </div>
     </div>
 </body>
