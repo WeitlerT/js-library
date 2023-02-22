@@ -1,4 +1,5 @@
 let myLibrary = [];
+let counter = 1;
 const libraryDiv = document.getElementById("library");
 const addBook = document.getElementById("addBook");
 const closeModal = document.getElementById("closeModal");
@@ -15,7 +16,11 @@ closeModal.addEventListener('click', () => {
     modalContainer.classList.remove('show');
 });
 
-// Get form data
+//delBtn.addEventListener('click', () => {
+//    console.log("asdasd");
+//});
+
+// Get form data and add to library
 function getData(form) {
     var formData = new FormData(form);
     let entryArr = [];
@@ -32,7 +37,7 @@ function getData(form) {
     console.log(newEntry);
     myLibrary.push(newEntry.getInfo());
     console.log(myLibrary);
-    populateLibrary();
+    populateLibrary(entryArr);
   }
   
   document.getElementById("myForm").addEventListener("submit", function (e) {
@@ -55,25 +60,36 @@ Book.prototype.getInfo = function(){
     return (info);
 }
 
+Book.prototype.toggleRead = function(){
+    this.read = !this.read;
+}
+
 const harryPotter = new Book('Harry Potter Phil Stone', 'JK Rowling', 255, false);
 
 //Adding some books to start
 myLibrary.push(harryPotter.getInfo());
-myLibrary.push(["Cool book", "cool author", 100, false])
-myLibrary.push(["Hunger Games", "Stephen King", 125, false])
-myLibrary.push(["Green eggs n ham", "Dr.Seuss", 150, false])
+
+populateLibrary(["Green eggs n ham", "Stephen King", 150, false]);
+populateLibrary(["asdasd", "dasdasd King", 150, false]);
+
+console.log(harryPotter.toggleRead());
+
+// put these as a new entry <--------
 
 console.log(myLibrary);
 console.log(typeof(myLibrary[0]));
 console.log(typeof(myLibrary[1]));
 
 // Populate Library Function to add books to cards
-function populateLibrary(){
-    for (let i=0; i<myLibrary.length; i++ ){
+function populateLibrary(inputArray){
+
+    // remove the loop
+    // ["Cool book", "cool author", 100, false] <- parameters
+
         let newEntry = document.createElement('div');
         newEntry.className = "card";
-        newEntry.dataset.num = i;
-        newEntry.innerText = myLibrary[i];
+        newEntry.dataset.num = counter;
+        newEntry.innerText = inputArray;
 
         let delButton = document.createElement('button');
         delButton.setAttribute("id","delBtn");
@@ -86,7 +102,18 @@ function populateLibrary(){
         libraryDiv.appendChild(newEntry);
         newEntry.appendChild(delButton);
         newEntry.appendChild(toggleButton);
-    }
+        counter ++;
+
+        delButton.addEventListener('click', (e) => {
+            console.log(e.target.id)
+            e.target.parentNode.remove();
+        });
 }
 
-populateLibrary();
+/*
+    Input ->
+    New Book Object Creation ->
+    Book Fields Filled ->
+    New Div Created ->
+    Fill With Book Object Info
+*/
