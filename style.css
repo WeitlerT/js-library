@@ -1,38 +1,46 @@
+/* GLOBAL STYLES */
 * {
     box-sizing: border-box;
 }
 
 body{
     background-color: #edeef6;
+    margin: 0px;
 }
 
+
+/* CONTAINER STYLING */
+.container{
+    border: 1px solid blue;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 9fr 1fr 0.5fr;
+}
 #library {
     border: 1px solid black;
     padding: 10px;
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-flow: row;
 }
 
+/* CARD STYLING */
 .card {
     background-color: white;
     padding: 10px;
     border-radius: 10px;
     display: grid;
+    height: 200px;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.5fr 0.5fr;
     gap: 5px;
 }
 
-.card #delBtn {
-    background: rgb(202, 98, 98);
+.card p {
+    margin: 0px;
 }
 
-.card #toggleBtn {
-    background: rgb(125, 125, 214);
-}
-
+/* BUTTON STYLING */
 button {
     background-color: #47a386;
     border: 0;
@@ -48,6 +56,38 @@ button:hover {
     background-color: #39866e;
 }
 
+#delBtn {
+    background: rgb(202, 98, 98);
+}
+
+#delBtn:hover {
+    background-color: rgb(201, 77, 77);
+}
+
+#toggleBtn {
+    background: rgb(125, 125, 214);
+}
+
+#toggleBtn:hover {
+    background: rgb(99, 99, 212);
+}
+
+#closeModalBtn {
+    background-color: rgb(124, 211, 121);
+    font-size: 20px;
+    width: 100px;
+    justify-self: end;
+}
+
+#closeModalBtn:hover {
+    background-color: rgb(72, 199, 68);
+}
+
+#addBookBtn {
+    font-size: 20px;
+}
+
+/* MODAL STYLING */
 .modal-container{
     display: none;
 }
@@ -72,4 +112,41 @@ button:hover {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     text-align: center;
+
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+/* FORM STYLING */
+
+#myForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.form-item.btn {
+    grid-column: 1/3;
+}
+
+.form-item.field {
+    text-align: start;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+/* Footer Styling */
+footer{
+    text-align: center;
+    color: rgba(0, 0, 0, 0.423);
+}
+
+a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.423);
+}
+
+a:hover{
+    color: black;
 }

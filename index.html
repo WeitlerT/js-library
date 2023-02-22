@@ -6,45 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Library Legitness</title>
 </head>
 <body>
     <div class="container">
         <div id="library">
-
+            <!-- JS ADDS STUFF HERE! -->
         </div>
-    </div>
-
-    <button id="addBook">Add New Book</button>
-    <div class="modal-container" id="modalContainer">
-        <div class="modal">
-            <h1>Add book</h1>
-            <form action="" id="myForm">
-                <div class="form-item">
-                    <label for="title">* Book title:</label>
-                    <input type="text" name="title" id="title" required>
-                </div>
-                <div class="form-item">
-                    <label for="author">* Author name:</label>
-                    <input type="text" name="author" id="author" required>
-                </div>
-                <div class="form-item">
-                    <label for="pages">* Pages:</label>
-                    <input type="number" name="pages" id="pages" required>
-                </div>
-                <div class="form-item">
-                    <label for="read-status">* Read status:</label>
-                    <select name="read-status" id="read-status">
-                        <option value="true">I've read this</option>
-                        <option value="false">I haven't read this</option>
-                    </select>
-                </div>
-                <div class="form-item">
-                    <button type="submit" value="Submit">Add Book</button>
-                </div>
-            </form>
-            <button id="closeModal">Close</button>
+        <!-- Main Modal only shows when button is clicked -->
+        <div class="modal-container" id="modalContainer">
+            <div class="modal">
+                <h1>Add Book</h1>
+                <form action="" id="myForm">
+                    <div class="form-item field">
+                        <label for="title">* Book title:</label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
+                    <div class="form-item field">
+                        <label for="author">* Author name:</label>
+                        <input type="text" name="author" id="author" required>
+                    </div>
+                    <div class="form-item field">
+                        <label for="pages">* Pages:</label>
+                        <input type="number" name="pages" id="pages" required>
+                    </div>
+                    <div class="form-item field">
+                        <label for="read-status">* Read status:</label>
+                        <select name="read-status" id="read-status">
+                            <option value="true">I've read this</option>
+                            <option value="false">I haven't read this</option>
+                        </select>
+                    </div>
+                    <div class="form-item btn">
+                        <button type="submit" value="Submit" id="submitBtn">Add Book</button>
+                    </div>
+                </form>
+                <button id="closeModalBtn">Finish</button>
+            </div>
         </div>
+
+        <button id="addBookBtn">New Book</button>
+        <footer>
+            <p>
+            Built by <a href="https://weitlert.github.io/">WeitlerT <i style="font-size:18px" class="fa">&#xf09b;</i></a>
+            </p>
+        </footer>
     </div>
 </body>
 </html>

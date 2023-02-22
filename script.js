@@ -1,11 +1,12 @@
 let myLibrary = [];
 let counter = 0;
 const libraryDiv = document.getElementById("library");
-const addBook = document.getElementById("addBook");
-const closeModal = document.getElementById("closeModal");
+const addBook = document.getElementById("addBookBtn");
+const closeModal = document.getElementById("closeModalBtn");
 const modalContainer = document.getElementById("modalContainer");
 const delBtn = document.getElementById("delBtn");
 const toggleBtn = document.getElementById("toggleBtn");
+const submitBtn = document.getElementById("submitBtn");
 
 // Listeners
 addBook.addEventListener('click', () => {
@@ -15,6 +16,7 @@ addBook.addEventListener('click', () => {
 closeModal.addEventListener('click', () => {
     modalContainer.classList.remove('show');
 });
+
 
 //delBtn.addEventListener('click', () => {
 //    console.log("asdasd");
@@ -31,11 +33,8 @@ function getData(form) {
     }
 
     console.log(Object.fromEntries(formData));
-
     console.log(`This is the new entry array ${entryArr}`);
-    let newEntry = new Book(entryArr[0],entryArr[1],entryArr[2],entryArr[3]);
-    console.log(`This is new entry ${newEntry}`);
-    populateLibrary(newEntry.getInfo());
+    populateLibrary(entryArr[0],entryArr[1],entryArr[2],entryArr[3]);
     console.log(myLibrary);
   }
   
@@ -53,42 +52,41 @@ function Book(title, author, pages, read){
     this.read = read;
 }
 
-Book.prototype.getInfo = function(){
-    let info = [];
-    info.push(this.title, this.author, this.pages, this.read);
-    // info = [`${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read":"not read yet"}`];
-    return (info);
-}
-
 Book.prototype.toggleRead = function(){
     this.read = !this.read;
 }
 
-const harryPotter = new Book('Harry Potter Phil Stone', 'JK Rowling', 255, false);
-
 //Adding some books to start
-// myLibrary.push(harryPotter.getInfo());
-
-populateLibrary(["Green eggs n ham", "Stephen King", 150, false]);
-populateLibrary(["asdasd", "dasdasd King", 150, false]);
-
-// console.log(harryPotter.toggleRead());
-
-// put these as a new entry <--------
+populateLibrary("Green eggs n ham", "Stephen King", 150, false);
+populateLibrary("asdasd", "dasdasd King", 150, false);
 
 console.log(myLibrary);
-// console.log(typeof(myLibrary[0]));
-// console.log(typeof(myLibrary[1]));
 
 // Populate Library Function to add books to cards
-function populateLibrary(inputArray){
+function populateLibrary(title, author, pages, read){
 
-        myLibrary.push(inputArray);
+        const book = new Book(title, author, pages, read);
+        myLibrary.push(book);
 
-        let newEntry = document.createElement('div');
-        newEntry.className = "card";
-        newEntry.dataset.num = counter;
-        newEntry.innerText = inputArray;
+        let newCard = document.createElement('div');
+        newCard.className = "card";
+        newCard.dataset.num = counter;
+
+        let bookTitle = document.createElement('p');
+        bookTitle.className = 'book-title';
+        bookTitle.innerText = "Title: " + book.title;
+
+        let bookAuthor = document.createElement('p');
+        bookAuthor.className = 'book-author';
+        bookAuthor.innerText = "Author: " + book.author;
+
+        let bookPages = document.createElement('p');
+        bookPages.className = 'book-pages';
+        bookPages.innerText = "Pages: " + book.pages;
+
+        let bookRead = document.createElement('p');
+        bookRead.className = 'book-read';
+        bookRead.innerText = "Read Status: " + (book.read ? "Read": "Not Read");
 
         let delButton = document.createElement('button');
         delButton.setAttribute("id","delBtn");
@@ -96,33 +94,33 @@ function populateLibrary(inputArray){
 
         let toggleButton = document.createElement('button');
         toggleButton.setAttribute("id","toggleBtn");
-        toggleButton.innerHTML = "Toggle Read";
+        toggleButton.innerText = "Toggle Read";
 
-        libraryDiv.appendChild(newEntry);
-        newEntry.appendChild(delButton);
-        newEntry.appendChild(toggleButton);
+        libraryDiv.appendChild(newCard);
+        newCard.appendChild(bookTitle);
+        newCard.appendChild(bookAuthor);
+        newCard.appendChild(bookPages);
+        newCard.appendChild(bookRead);
+        newCard.appendChild(delButton);
+        newCard.appendChild(toggleButton);
         counter ++;
 
         delButton.addEventListener('click', (e) => {
-            // console.log(e.target.id);
             //This is targetting the data-num attribute in our parent container
             let itemIndex = e.target.parentNode.dataset.num;
             //Remove matching index and remove parentNode (container) from HTML
             myLibrary.splice(itemIndex);
             e.target.parentNode.remove();
+            console.log(myLibrary);
         });
 
         toggleButton.addEventListener('click', (e) => {
             let itemIndex = e.target.parentNode.dataset.num;
             console.log(myLibrary[itemIndex].constructor.name);
-            // myLibrary[itemIndex].toggleRead();
+            //Toggle read status using proto method
+            myLibrary[itemIndex].toggleRead();
+            //Show the change in console and update the HTML
+            console.log(myLibrary[itemIndex].read);
+            bookRead.innerText = "Read Status: " + (book.read ? "Read": "Not Read");
         });
 }
-
-/*
-    Input ->
-    New Book Object Creation ->
-    Book Fields Filled ->
-    New Div Created ->
-    Fill With Book Object Info
-*/
