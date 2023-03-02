@@ -44,17 +44,20 @@ function getData(form) {
   });
   
 
-//Book constructor
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+//Book Class
+class Book {
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    toggleRead(){
+        this.read = !this.read;
+    }
 }
 
-Book.prototype.toggleRead = function(){
-    this.read = !this.read;
-}
 
 //Adding some books to start
 populateLibrary("Green eggs n ham", "Stephen King", 150, false);
