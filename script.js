@@ -17,11 +17,6 @@ closeModal.addEventListener('click', () => {
     modalContainer.classList.remove('show');
 });
 
-
-//delBtn.addEventListener('click', () => {
-//    console.log("asdasd");
-//});
-
 // Get form data and add to library
 function getData(form) {
     var formData = new FormData(form);
